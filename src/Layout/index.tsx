@@ -6,18 +6,9 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
-
 const { Header, Sider, Content } = Layout;
-
 import { Outlet, } from 'react-router-dom';
-
 import Menu from './components/Menu';
-
-
-
-
-
-
 
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);

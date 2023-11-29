@@ -21,16 +21,6 @@ const withLoadingComponent = (comp: JSX.Element) => (
   </Suspense>
 )
 
-function MyRedirect(props: { to: string }) {
-  const navigator = useNavigate()
-  useEffect(() => {
-    if (window.location.pathname === '/access') {
-      navigator(props.to)
-    }
-  }, [])
-  return <Outlet />
-}
-
 const routes: SyncRoute[] = [
   {
     path: '/login',
@@ -48,16 +38,17 @@ const routes: SyncRoute[] = [
       {
         path: '/home',
         name: 'Home',
-        element: withLoadingComponent(<RouterAuth><Home /></RouterAuth>),
+        element: <Home />,
       },
       {
         path: '/access',
         name: 'Access',
-        element: <MyRedirect to="/access/menu" />,
+        element: withLoadingComponent(<Menu />),
         children: [
           {
             path: '/access/menu',
             name: 'Menu',
+            index: true,
             element: withLoadingComponent(<Menu />),
           },
           {
